@@ -9,31 +9,44 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive, MatToolbarModule, MatButtonModule, MatIconModule],
   template: `
-    <mat-toolbar class="app-toolbar">
-      <span class="brand">{{ title }}</span>
-      <span class="spacer"></span>
-      <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        Inicio
-      </a>
-      <a mat-button routerLink="/projects" routerLinkActive="active">Proyectos</a>
-      <a mat-button routerLink="/blog" routerLinkActive="active">Blog</a>
-      <a
-        mat-icon-button
-        href="https://github.com/Volkya"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-      >
-        <mat-icon>code</mat-icon>
-      </a>
-    </mat-toolbar>
+    <div class="layout-app">
+      <mat-toolbar class="app-toolbar">
+        <span class="brand">{{ title }}</span>
+        <span class="spacer"></span>
+        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          Inicio
+        </a>
+        <a mat-button routerLink="/projects" routerLinkActive="active">Proyectos</a>
+        <a mat-button routerLink="/blog" routerLinkActive="active">Blog</a>
+        <a
+          mat-icon-button
+          href="https://github.com/Volkya"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <mat-icon>code</mat-icon>
+        </a>
+      </mat-toolbar>
 
-    <main class="shell">
-      <router-outlet />
-    </main>
+      <main class="shell">
+        <router-outlet />
+      </main>
+
+      <footer class="site-footer">
+        <a [href]="mailtoHref">{{ contactEmail }}</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href="https://github.com/Volkya" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </footer>
+    </div>
   `,
   styles: [
     `
+      .layout-app {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
       .spacer {
         flex: 1 1 auto;
       }
@@ -43,13 +56,39 @@ import { MatIconModule } from '@angular/material/icon';
         font-size: 0.9rem;
       }
       .shell {
-        padding: 1.25rem 1.25rem 2.5rem;
-        max-width: 720px;
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 880px;
         margin: 0 auto;
+        padding: 1.5rem clamp(1rem, 4vw, 1.75rem) 2.5rem;
+      }
+      .site-footer {
+        flex-shrink: 0;
+        margin-top: auto;
+        padding: 0.65rem clamp(1rem, 4vw, 1.75rem);
+        border-top: 1px solid var(--volkya-border);
+        background: var(--chrome-bg);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-align: center;
+      }
+      .site-footer a {
+        color: var(--text-ui);
+        text-decoration: none;
+      }
+      .site-footer a:hover {
+        color: var(--volkya-brand);
+        text-decoration: underline;
+      }
+      .site-footer .sep {
+        margin: 0 0.5rem;
+        opacity: 0.5;
       }
     `,
   ],
 })
 export class AppComponent {
   title = 'Portfolio — Dyma Correa';
+  readonly contactEmail = 'matiasdylanc@gmail.com';
+  readonly mailtoHref = `mailto:${this.contactEmail}`;
 }
