@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Portfolio web (este sitio)",
+    "summary": "Angular + Material, contenido en Markdown generado a JSON en build.",
+    "order": 0,
+    "repo": "https://github.com/Volkya/portfolio",
+    "tags": [
+      "Angular",
+      "TypeScript"
+    ],
+    "slug": "portfolio-web",
+    "body": "\nSitio liviano para mostrar **proyectos** y **posts** sin CMS: los textos viven en `content/` y un script de Node vuelca `posts.json` / `projects.json` en `src/assets/content/` antes de `ng serve` / `ng build`.\n\nLa fuente de verdad para código sigue siendo GitHub; acá solo hay una capa más presentable.\n"
+  }
+]
