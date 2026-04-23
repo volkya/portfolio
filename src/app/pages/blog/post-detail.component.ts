@@ -7,6 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MarkdownComponent } from 'ngx-markdown';
 import { ContentService } from '../../core/content.service';
+import { SiteCopyService } from '../../core/site-copy.service';
 import type { PostEntry } from '../../core/content.models';
 
 @Component({
@@ -28,7 +29,7 @@ import type { PostEntry } from '../../core/content.models';
           <header class="surface-frame__head">
             <a mat-stroked-button class="btn-pill-outline" routerLink="/blog">
               <mat-icon>arrow_back</mat-icon>
-              Blog
+              {{ site.content().postDetail.back }}
             </a>
             <h1>{{ s.post.title }}</h1>
             <div class="meta">
@@ -42,7 +43,7 @@ import type { PostEntry } from '../../core/content.models';
             @if (s.post.tags?.length || (devMode && s.post.draft)) {
               <mat-chip-set>
                 @if (devMode && s.post.draft) {
-                  <mat-chip highlighted color="warn">Borrador (dev)</mat-chip>
+                  <mat-chip highlighted color="warn">{{ site.content().postDetail.draftChip }}</mat-chip>
                 }
                 @for (t of s.post.tags || []; track t) {
                   <mat-chip disabled>{{ t }}</mat-chip>
@@ -55,8 +56,10 @@ import type { PostEntry } from '../../core/content.models';
           </article>
         </section>
       } @else {
-        <p class="empty-msg">No hay entrada «{{ s.slug }}».</p>
-        <a mat-stroked-button class="btn-pill-outline" routerLink="/blog">Volver</a>
+        <p class="empty-msg">{{ site.content().postDetail.notFound }}</p>
+        <a mat-stroked-button class="btn-pill-outline" routerLink="/blog">{{
+          site.content().postDetail.backButton
+        }}</a>
       }
     }
   `,
@@ -88,6 +91,7 @@ import type { PostEntry } from '../../core/content.models';
 })
 export class PostDetailComponent {
   readonly devMode = isDevMode();
+  readonly site = inject(SiteCopyService);
 
   private readonly content = inject(ContentService);
   private readonly route = inject(ActivatedRoute);

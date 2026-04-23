@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { SiteCopyService } from './core/site-copy.service';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +12,24 @@ import { MatIconModule } from '@angular/material/icon';
   template: `
     <div class="layout-app">
       <mat-toolbar class="app-toolbar">
-        <span class="brand">{{ title }}</span>
+        <span class="brand">{{ site.content().brand.toolbarTitle }}</span>
         <span class="spacer"></span>
-        <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          Inicio
-        </a>
-        <a mat-button routerLink="/projects" routerLinkActive="active">Proyectos</a>
-        <a mat-button routerLink="/blog" routerLinkActive="active">Blog</a>
+        @for (item of site.content().nav; track item.path) {
+          <a
+            mat-button
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="item.exact ? linkExact : linkPrefix"
+          >
+            {{ item.label }}
+          </a>
+        }
         <a
           mat-icon-button
-          href="https://github.com/Volkya"
+          [href]="site.content().social.githubUrl"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="GitHub"
+          [attr.aria-label]="site.content().social.githubAriaLabel"
         >
           <mat-icon>code</mat-icon>
         </a>
@@ -34,9 +40,13 @@ import { MatIconModule } from '@angular/material/icon';
       </main>
 
       <footer class="site-footer">
-        <a [href]="mailtoHref">{{ contactEmail }}</a>
+        <a [href]="mailtoHref">{{ site.content().contact.email }}</a>
         <span class="sep" aria-hidden="true">·</span>
-        <a href="https://github.com/Volkya" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a routerLink="/cv">{{ site.content().footer.cvLabel }}</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a [href]="site.content().social.githubUrl" target="_blank" rel="noopener noreferrer">{{
+          site.content().footer.githubLabel
+        }}</a>
       </footer>
     </div>
   `,
@@ -88,7 +98,11 @@ import { MatIconModule } from '@angular/material/icon';
   ],
 })
 export class AppComponent {
-  title = 'Portfolio — Dyma Correa';
-  readonly contactEmail = 'matiasdylanc@gmail.com';
-  readonly mailtoHref = `mailto:${this.contactEmail}`;
+  readonly site = inject(SiteCopyService);
+  readonly linkExact = { exact: true };
+  readonly linkPrefix = { exact: false };
+
+  get mailtoHref(): string {
+    return `mailto:${this.site.content().contact.email}`;
+  }
 }

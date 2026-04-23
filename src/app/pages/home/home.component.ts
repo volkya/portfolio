@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { SiteCopyService } from '../../core/site-copy.service';
 
 @Component({
   selector: 'app-home',
@@ -11,22 +12,19 @@ import { MatButtonModule } from '@angular/material/button';
     <section class="hero">
       <mat-card class="hero-card surface-card" appearance="outlined">
         <mat-card-header class="card-head-chrome">
-          <mat-card-title>¡Hola! Soy Dyma Correa</mat-card-title>
-          <mat-card-subtitle>Software full stack · Argentina (GMT-3)</mat-card-subtitle>
+          <mat-card-title>{{ site.content().home.heroTitle }}</mat-card-title>
+          <mat-card-subtitle>{{ site.content().home.heroSubtitle }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="content-well">
-          <p>
-            Bienvenido a mi portfolio. Proyectos y notas salen de Markdown en el repo; el detalle
-            técnico sigue en GitHub.
-          </p>
+          <p>{{ site.content().home.heroBody }}</p>
         </mat-card-content>
-        <div class="stack-strip" aria-label="Stack principal">
-          <span class="stack-label">Stack</span>
-          <span class="stack-items">Angular · TypeScript · Node</span>
+        <div class="stack-strip" [attr.aria-label]="site.content().home.stackAriaLabel">
+          <span class="stack-label">{{ site.content().home.stackLabel }}</span>
+          <span class="stack-items">{{ site.content().home.stackItems }}</span>
         </div>
         <mat-card-actions align="end">
-          <a mat-raised-button color="primary" routerLink="/projects">Proyectos</a>
-          <a mat-stroked-button class="btn-pill-outline" routerLink="/blog">Blog</a>
+          <a mat-raised-button color="primary" routerLink="/projects">{{ site.content().home.ctaProjects }}</a>
+          <a mat-stroked-button class="btn-pill-outline" routerLink="/blog">{{ site.content().home.ctaBlog }}</a>
         </mat-card-actions>
       </mat-card>
     </section>
@@ -65,7 +63,12 @@ import { MatButtonModule } from '@angular/material/button';
       .stack-items {
         color: var(--text-ui);
       }
+      .content-well p {
+        white-space: pre-line;
+      }
     `,
   ],
 })
-export class HomeComponent {}
+export class HomeComponent {
+  readonly site = inject(SiteCopyService);
+}

@@ -5,10 +5,12 @@ import { provideRouter } from '@angular/router';
 import { provideMarkdown } from 'ngx-markdown';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
+import { SITE_COPY_INITIALIZER } from './app/core/site-copy.initializer';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
+    SITE_COPY_INITIALIZER,
     provideRouter(routes),
     provideAnimations(),
     provideMarkdown(),

@@ -23,5 +23,9 @@ export const routes: Routes = [
     path: 'blog/:slug',
     loadComponent: () => import('./pages/blog/post-detail.component').then((m) => m.PostDetailComponent),
   },
+  {
+    path: 'cv',
+    loadComponent: () => import('./pages/cv/cv.component').then((m) => m.CvComponent),
+  },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];

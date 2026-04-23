@@ -7,6 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MarkdownComponent } from 'ngx-markdown';
 import { ContentService } from '../../core/content.service';
+import { SiteCopyService } from '../../core/site-copy.service';
 import type { ProjectEntry } from '../../core/content.models';
 
 @Component({
@@ -20,7 +21,7 @@ import type { ProjectEntry } from '../../core/content.models';
           <header class="surface-frame__head">
             <a mat-stroked-button class="btn-pill-outline" routerLink="/projects">
               <mat-icon>arrow_back</mat-icon>
-              Proyectos
+              {{ site.content().projectDetail.back }}
             </a>
             <h1>{{ s.project.title }}</h1>
             @if (s.project.tags?.length) {
@@ -38,7 +39,7 @@ import type { ProjectEntry } from '../../core/content.models';
                   [href]="s.project.repo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Código</a>
+                  >{{ site.content().projectDetail.code }}</a>
               }
               @if (s.project.demo) {
                 <a
@@ -47,7 +48,7 @@ import type { ProjectEntry } from '../../core/content.models';
                   [href]="s.project.demo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Demo</a>
+                  >{{ site.content().projectDetail.demo }}</a>
               }
             </div>
           </header>
@@ -56,8 +57,10 @@ import type { ProjectEntry } from '../../core/content.models';
           </article>
         </section>
       } @else {
-        <p class="empty-msg">No hay proyecto «{{ s.slug }}».</p>
-        <a mat-stroked-button class="btn-pill-outline" routerLink="/projects">Volver</a>
+        <p class="empty-msg">{{ site.content().projectDetail.notFound }}</p>
+        <a mat-stroked-button class="btn-pill-outline" routerLink="/projects">{{
+          site.content().projectDetail.backButton
+        }}</a>
       }
     }
   `,
@@ -80,6 +83,7 @@ import type { ProjectEntry } from '../../core/content.models';
   ],
 })
 export class ProjectDetailComponent {
+  readonly site = inject(SiteCopyService);
   private readonly content = inject(ContentService);
   private readonly route = inject(ActivatedRoute);
 

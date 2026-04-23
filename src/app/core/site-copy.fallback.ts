@@ -1,0 +1,62 @@
+import type { SiteCopy } from './site-copy.model';
+
+/** Solo si falla la petición a `assets/site.json` (red, build roto, etc.). Mantener alineado con ese archivo. */
+export const SITE_COPY_FALLBACK: SiteCopy = {
+  brand: { toolbarTitle: 'Dyma Correa' },
+  social: { githubUrl: 'https://github.com/Volkya', githubAriaLabel: 'GitHub' },
+  contact: { email: 'matiasdylanc@gmail.com' },
+  footer: { cvLabel: 'CV', githubLabel: 'GitHub' },
+  nav: [
+    { path: '/', label: 'Inicio', exact: true },
+    { path: '/projects', label: 'Proyectos' },
+    { path: '/blog', label: 'Blog' },
+    { path: '/cv', label: 'CV' },
+  ],
+  home: {
+    heroTitle: '¡Hola! Soy Dyma Correa',
+    heroSubtitle: 'Software full stack · Argentina (GMT-3)',
+    heroBody:
+      'Senior Backend Engineer focused on distributed systems, concurrency, and performance.\n\nI design and build scalable architectures using Java, Kotlin, and Go, applying microservices and event-driven design patterns.\n\nExperienced in solving complex problems in high-throughput environments, with a strong focus on resilience, observability, and clean architecture.\n\nPassionate about evolving backend systems toward modern architectures with AI integration and real-time processing.',
+    stackAriaLabel: 'Stack principal',
+    stackLabel: 'Stack',
+    stackItems: 'Angular · TypeScript · Node',
+    ctaProjects: 'Proyectos',
+    ctaBlog: 'Blog',
+  },
+  projectsPage: {
+    heading: 'Proyectos',
+    lede: 'Listado desde assets/content/projects.json.',
+    empty: 'No hay proyectos publicados.',
+    detail: 'Detalle',
+    repo: 'Repo',
+    demo: 'Demo',
+  },
+  blogPage: {
+    heading: 'Blog',
+    lede: 'Entradas desde assets/content/posts.json.',
+    empty: 'No hay posts publicados.',
+    draftChip: 'Borrador',
+  },
+  cvPage: {
+    heading: 'CV',
+    lede: 'PDF para compartir en procesos; lo técnico y actualizado vive en',
+    ledeLinkLabel: 'GitHub',
+    hint: 'Subí tu archivo como src/assets/cv.pdf para que el botón de descarga funcione.',
+    downloadPdf: 'Descargar PDF',
+    viewGithub: 'Ver GitHub',
+    cvPdfHref: 'assets/cv.pdf',
+  },
+  projectDetail: {
+    back: 'Proyectos',
+    code: 'Código',
+    demo: 'Demo',
+    notFound: 'No hay proyecto con ese enlace.',
+    backButton: 'Volver',
+  },
+  postDetail: {
+    back: 'Blog',
+    draftChip: 'Borrador (dev)',
+    notFound: 'No hay entrada con ese enlace.',
+    backButton: 'Volver',
+  },
+};

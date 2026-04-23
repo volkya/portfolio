@@ -5,18 +5,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { ContentService } from '../../core/content.service';
+import { SiteCopyService } from '../../core/site-copy.service';
 
 @Component({
   selector: 'app-project-list',
   standalone: true,
   imports: [AsyncPipe, RouterLink, MatCardModule, MatButtonModule, MatChipsModule],
   template: `
-    <h1 class="page-heading">Proyectos</h1>
-    <p class="lede">Listado desde <code>assets/content/projects.json</code>.</p>
+    <h1 class="page-heading">{{ site.content().projectsPage.heading }}</h1>
+    <p class="lede">{{ site.content().projectsPage.lede }}</p>
 
     @if (projects$ | async; as projects) {
       @if (projects.length === 0) {
-        <p class="empty-msg">No hay proyectos publicados.</p>
+        <p class="empty-msg">{{ site.content().projectsPage.empty }}</p>
       } @else {
         <div class="grid">
           @for (p of projects; track p.slug) {
@@ -35,7 +36,9 @@ import { ContentService } from '../../core/content.service';
                 </mat-card-content>
               }
               <mat-card-actions align="end">
-                <a mat-stroked-button class="btn-pill-outline" [routerLink]="['/projects', p.slug]">Detalle</a>
+                <a mat-stroked-button class="btn-pill-outline" [routerLink]="['/projects', p.slug]">{{
+                  site.content().projectsPage.detail
+                }}</a>
                 @if (p.repo) {
                   <a
                     mat-stroked-button
@@ -43,7 +46,7 @@ import { ContentService } from '../../core/content.service';
                     [href]="p.repo"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >Repo</a>
+                    >{{ site.content().projectsPage.repo }}</a>
                 }
                 @if (p.demo) {
                   <a
@@ -52,7 +55,7 @@ import { ContentService } from '../../core/content.service';
                     [href]="p.demo"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >Demo</a>
+                    >{{ site.content().projectsPage.demo }}</a>
                 }
               </mat-card-actions>
             </mat-card>
@@ -78,5 +81,6 @@ import { ContentService } from '../../core/content.service';
   ],
 })
 export class ProjectListComponent {
+  readonly site = inject(SiteCopyService);
   readonly projects$ = inject(ContentService).getProjects();
 }
