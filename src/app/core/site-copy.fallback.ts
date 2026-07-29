@@ -23,7 +23,7 @@ export const SITE_COPY_FALLBACK: SiteCopy = {
       "I design and build distributed systems focused on concurrency, performance, and resilience.\n\nScalable architectures with Java, Kotlin, and Go: microservices, events, and observability in high-throughput environments.\n\nToday I'm interested in pushing backends toward real-time processing and AI integration.",
     stackAriaLabel: 'Core stack',
     stackLabel: 'Stack',
-    stackItems: 'Java · Kotlin · Go · AWS · Kubernetes · Docker · Microservices · Observability',
+    stackItems: 'Java · Kotlin · Go · Node.js · Python · PHP · Angular · React · AWS · Kubernetes · Docker · Terraform · ArgoCD · Prometheus · Microservices · Observability',
     ctaProjects: 'Projects',
     ctaCv: 'Download CV',
     journalHeading: 'Recent notes',

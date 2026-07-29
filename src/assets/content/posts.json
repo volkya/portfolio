@@ -1,10 +1,21 @@
 [
   {
-    "title": "Welcome to the blog",
-    "date": "2026-04-22T00:00:00.000Z",
-    "description": "Markdown content in the repo — no Medium.",
-    "layout": "note",
     "slug": "bienvenida",
-    "body": "\nThis site builds articles from **Markdown** files in `content/posts/`.\n\n- Edit a `.md`, run `yarn start` or `yarn build`, and you're done.\n- Use `draft: true` in the front matter to hide a post in production (it stays visible in development).\n\n```bash\ncontent/posts/my-note.md\n```\n"
+    "title": "Welcome to the blog",
+    "body": "This site builds articles from **Markdown** files in `content/posts/`.\n\n- Edit a `.md`, run `yarn start` or `yarn build`, and a script writes `src/assets/content/posts.json`.\n- Use `draft: true` in the front matter to hide a post in production (it stays visible in development).\n- Optional `platforms` become pills that link to where you also published (Dev.to, Medium, Hashnode, …).\n\n```bash\ncontent/posts/my-note.md\n```\n",
+    "date": "2026-04-22T00:00:00.000Z",
+    "description": "Markdown in the repo — link out to Dev.to / Medium when you republish.",
+    "platforms": [
+      {
+        "name": "Dev.to",
+        "url": "https://dev.to/"
+      },
+      {
+        "name": "Medium",
+        "url": "https://medium.com/"
+      }
+    ],
+    "draft": false,
+    "layout": "note"
   }
 ]

@@ -2,14 +2,13 @@ import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { MatButtonModule } from '@angular/material/button';
 import { ContentService } from '../../core/content.service';
 import { SiteCopyService } from '../../core/site-copy.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AsyncPipe, DatePipe, RouterLink, MatButtonModule],
+  imports: [AsyncPipe, DatePipe, RouterLink],
   template: `
     <section class="hero">
       <p class="hero-kicker">{{ site.content().home.heroSubtitle }}</p>
@@ -22,7 +21,7 @@ import { SiteCopyService } from '../../core/site-copy.service';
       </div>
 
       <div class="stack" [attr.aria-label]="site.content().home.stackAriaLabel">
-        <span class="meta-pill">{{ site.content().home.stackLabel }}</span>
+        <span class="stack-label">{{ site.content().home.stackLabel }}</span>
         <ul class="stack-items">
           @for (item of stackItems(); track item) {
             <li>{{ item }}</li>
@@ -31,10 +30,9 @@ import { SiteCopyService } from '../../core/site-copy.service';
       </div>
 
       <div class="hero-actions">
-        <a mat-raised-button color="primary" routerLink="/projects">{{ site.content().home.ctaProjects }}</a>
+        <a class="btn-pill btn-pill--solid" routerLink="/projects">{{ site.content().home.ctaProjects }}</a>
         <a
-          mat-stroked-button
-          class="btn-pill-outline"
+          class="btn-pill"
           [href]="site.content().cvPage.cvPdfHref"
           target="_blank"
           rel="noopener noreferrer"
@@ -100,12 +98,17 @@ import { SiteCopyService } from '../../core/site-copy.service';
       }
       .stack {
         margin: 2rem 0 0;
-        padding: 1.15rem 0 1rem;
+        padding: 1.15rem 0 0;
         border-top: 1px solid var(--volkya-border);
-        border-bottom: 1px solid var(--volkya-border);
       }
-      .stack .meta-pill {
-        margin-bottom: 0.7rem;
+      .stack-label {
+        display: block;
+        margin-bottom: 0.55rem;
+        color: var(--text-muted);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
       }
       .stack-items {
         display: flex;

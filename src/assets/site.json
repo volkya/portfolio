@@ -15,11 +15,11 @@
   ],
   "home": {
     "heroTitle": "HI! I'M DYMA CORREA",
-    "heroSubtitle": "Senior Software Engineer · Argentina (GMT-3)",
+    "heroSubtitle": "Senior Software Engineer · Cloud Native · Remote (GMT-3)",
     "heroBody": "I design and build distributed systems focused on concurrency, performance, and resilience.\n\nScalable architectures with Java, Kotlin, and Go: microservices, events, and observability in high-throughput environments.\n\nToday I'm interested in pushing backends toward real-time processing and AI integration.",
     "stackAriaLabel": "Core stack",
     "stackLabel": "Stack",
-    "stackItems": "Java · Kotlin · Go · AWS · Kubernetes · Docker · Microservices · Observability",
+    "stackItems": "Java · Kotlin · Go · Node.js · Python · Angular · React · AWS · Kubernetes · Docker · Terraform · ArgoCD · Prometheus · Microservices · Observability",
     "ctaProjects": "PROJECTS",
     "ctaCv": "Download CV",
     "journalHeading": "Recent notes",

@@ -1,3 +1,8 @@
+export interface PostPlatform {
+  name: string;
+  url: string;
+}
+
 export interface PostEntry {
   slug: string;
   title: string;
@@ -5,6 +10,7 @@ export interface PostEntry {
   date?: string;
   description?: string;
   tags?: string[];
+  platforms?: PostPlatform[];
   draft?: boolean;
   layout?: string;
 }

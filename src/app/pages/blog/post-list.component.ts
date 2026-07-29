@@ -35,6 +35,20 @@ import { SiteCopyService } from '../../core/site-copy.service';
               @if (post.description) {
                 <p class="entry-summary">{{ post.description }}</p>
               }
+              @if (post.platforms?.length) {
+                <ul class="tag-list" aria-label="Published on">
+                  @for (p of post.platforms; track p.name) {
+                    <li>
+                      <a
+                        class="meta-pill"
+                        [href]="p.url"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >{{ p.name }}</a>
+                    </li>
+                  }
+                </ul>
+              }
               @if (post.tags?.length) {
                 <ul class="tag-list" aria-label="Tags">
                   @for (t of post.tags; track t) {

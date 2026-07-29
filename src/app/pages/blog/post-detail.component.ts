@@ -26,6 +26,20 @@ import type { PostEntry } from '../../core/content.models';
               <span class="meta-pill meta-pill--accent">{{ site.content().postDetail.draftChip }}</span>
             }
           </div>
+          @if (s.post.platforms?.length) {
+            <ul class="tag-list" aria-label="Published on">
+              @for (p of s.post.platforms || []; track p.name) {
+                <li>
+                  <a
+                    class="meta-pill"
+                    [href]="p.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >{{ p.name }}</a>
+                </li>
+              }
+            </ul>
+          }
           @if (s.post.tags?.length) {
             <ul class="tag-list" aria-label="Tags">
               @for (t of s.post.tags || []; track t) {

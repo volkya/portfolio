@@ -33,10 +33,33 @@ yarn start
 
 ### Scripts disponibles
 
-- `yarn start` - Servidor de desarrollo (http://localhost:4200)
-- `yarn build` - Build de producción
+- `yarn start` - Genera contenido desde Markdown y levanta el servidor (http://localhost:4200)
+- `yarn build` - Genera contenido + build de producción
+- `yarn content` - Solo regenera `posts.json` / `projects.json` desde `content/`
 - `yarn test` - Ejecutar tests
 - `yarn lint` - Verificar código
+
+### Blog (Markdown → sitio)
+
+1. Creá un archivo en `content/posts/mi-nota.md`
+2. Front matter + cuerpo Markdown
+3. `yarn start` (o `yarn content`) escribe `src/assets/content/posts.json`
+
+```yaml
+---
+title: My note
+date: 2026-07-29
+description: Short blurb for the list
+tags: [Backend]
+platforms:
+  - name: Dev.to
+    url: https://dev.to/you/my-note
+---
+
+Your markdown body here.
+```
+
+`platforms` aparecen como pills clickeables en el blog. `draft: true` oculta el post en producción.
 
 ## 📁 Estructura del Proyecto
 

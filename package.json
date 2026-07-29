@@ -4,6 +4,9 @@
   "description": "My portfolio built with Angular and Angular Material",
   "scripts": {
     "ng": "ng",
+    "content": "node scripts/build-content.mjs",
+    "prestart": "node scripts/build-content.mjs",
+    "prebuild": "node scripts/build-content.mjs",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
