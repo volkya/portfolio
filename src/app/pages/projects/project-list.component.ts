@@ -1,66 +1,55 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
 import { ContentService } from '../../core/content.service';
 import { SiteCopyService } from '../../core/site-copy.service';
 
 @Component({
   selector: 'app-project-list',
   standalone: true,
-  imports: [AsyncPipe, RouterLink, MatCardModule, MatButtonModule, MatChipsModule],
+  imports: [AsyncPipe, RouterLink],
   template: `
-    <h1 class="page-heading">{{ site.content().projectsPage.heading }}</h1>
-    <p class="lede">{{ site.content().projectsPage.lede }}</p>
+    <header class="page-intro">
+      <h1 class="page-heading">{{ site.content().projectsPage.heading }}</h1>
+      <p class="lede">{{ site.content().projectsPage.lede }}</p>
+    </header>
 
     @if (projects$ | async; as projects) {
       @if (projects.length === 0) {
         <p class="empty-msg">{{ site.content().projectsPage.empty }}</p>
       } @else {
-        <div class="grid">
+        <ul class="entry-list">
           @for (p of projects; track p.slug) {
-            <mat-card class="surface-card" appearance="outlined">
-              <mat-card-header>
-                <mat-card-title>{{ p.title }}</mat-card-title>
-                <mat-card-subtitle>{{ p.summary || p.description }}</mat-card-subtitle>
-              </mat-card-header>
-              @if (p.tags?.length) {
-                <mat-card-content class="tags">
-                  <mat-chip-set>
-                    @for (t of p.tags; track t) {
-                      <mat-chip disabled>{{ t }}</mat-chip>
-                    }
-                  </mat-chip-set>
-                </mat-card-content>
+            <li class="entry">
+              <h2 class="entry-title">
+                <a [routerLink]="['/projects', p.slug]">{{ p.title }}</a>
+              </h2>
+              @if (p.summary || p.description) {
+                <p class="entry-summary">{{ p.summary || p.description }}</p>
               }
-              <mat-card-actions align="end">
-                <a mat-stroked-button class="btn-pill-outline" [routerLink]="['/projects', p.slug]">{{
-                  site.content().projectsPage.detail
-                }}</a>
+              @if (p.tags?.length) {
+                <ul class="tag-list" aria-label="Tags">
+                  @for (t of p.tags; track t) {
+                    <li>{{ t }}</li>
+                  }
+                </ul>
+              }
+              <div class="entry-links">
+                <a [routerLink]="['/projects', p.slug]">{{ site.content().projectsPage.detail }}</a>
                 @if (p.repo) {
-                  <a
-                    mat-stroked-button
-                    class="btn-pill-outline"
-                    [href]="p.repo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >{{ site.content().projectsPage.repo }}</a>
+                  <a [href]="p.repo" target="_blank" rel="noopener noreferrer">{{
+                    site.content().projectsPage.repo
+                  }}</a>
                 }
                 @if (p.demo) {
-                  <a
-                    mat-stroked-button
-                    class="btn-pill-outline"
-                    [href]="p.demo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >{{ site.content().projectsPage.demo }}</a>
+                  <a [href]="p.demo" target="_blank" rel="noopener noreferrer">{{
+                    site.content().projectsPage.demo
+                  }}</a>
                 }
-              </mat-card-actions>
-            </mat-card>
+              </div>
+            </li>
           }
-        </div>
+        </ul>
       }
     }
   `,
@@ -69,13 +58,64 @@ import { SiteCopyService } from '../../core/site-copy.service';
       .empty-msg {
         color: var(--text-muted);
       }
-      .grid {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      .entry-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: 40rem;
       }
-      .tags mat-chip-set {
-        margin-top: 0.25rem;
+      .entry {
+        padding: 1.35rem 0;
+        border-top: 1px solid var(--volkya-border);
+      }
+      .entry:last-child {
+        border-bottom: 1px solid var(--volkya-border);
+      }
+      .entry-title {
+        margin: 0 0 0.4rem;
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        line-height: 1.35;
+      }
+      .entry-title a {
+        color: var(--text-strong);
+        text-decoration: none;
+      }
+      .entry-title a:hover {
+        color: var(--volkya-brand);
+      }
+      .entry-summary {
+        margin: 0 0 0.65rem;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        line-height: 1.55;
+      }
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.75rem;
+        list-style: none;
+        margin: 0 0 0.75rem;
+        padding: 0;
+        color: var(--text-ui);
+        font-size: 0.78rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .entry-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        font-size: 0.85rem;
+      }
+      .entry-links a {
+        color: var(--volkya-brand);
+        text-decoration: none;
+      }
+      .entry-links a:hover {
+        text-decoration: underline;
+        color: var(--text-strong);
       }
     `,
   ],

@@ -132,53 +132,6 @@ body {
   background: rgba(120, 72, 58, 0.35);
 }
 
-.mat-mdc-card {
-  border-radius: var(--volkya-radius) !important;
-  --mdc-elevated-card-container-color: var(--container-outer);
-  --mdc-outlined-card-container-color: var(--container-outer);
-}
-
-.hero-card.surface-card.mat-mdc-card {
-  background: var(--container-outer) !important;
-  border-color: var(--volkya-border) !important;
-}
-
-.card-head-chrome {
-  display: block;
-  background: var(--chrome-bg);
-  border: 1px solid var(--volkya-border);
-  border-radius: var(--volkya-radius);
-  padding: 0.85rem 1rem;
-  margin: 0 0 1rem;
-}
-
-.hero-card mat-card-title,
-.hero-card .mat-mdc-card-title {
-  color: var(--text-headline) !important;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-}
-
-.hero-card mat-card-subtitle,
-.hero-card .mat-mdc-card-subtitle {
-  color: var(--text-muted) !important;
-}
-
-.hero-card .content-well {
-  background: var(--container-inner);
-  color: var(--text-body);
-  padding: 1rem 1.1rem;
-  border-radius: var(--volkya-radius);
-}
-
-.hero-card .content-well p {
-  margin: 0;
-  font-size: 1.02rem;
-  line-height: 1.65;
-}
-
 /* Botón píldora contorneado (referencia foro / “Ocultar perfil”) */
 .btn-pill-outline.mat-mdc-outlined-button,
 a.btn-pill-outline.mat-mdc-outlined-button {
@@ -240,45 +193,6 @@ a.btn-pill-outline.mat-mdc-outlined-button .mdc-button__outline {
   border-radius: var(--volkya-radius);
   border: 1px solid var(--volkya-border);
   font-size: 0.88em;
-}
-
-.surface-card mat-card-title,
-.surface-card .mat-mdc-card-title {
-  color: var(--text-strong) !important;
-}
-
-.surface-card mat-card-subtitle,
-.surface-card .mat-mdc-card-subtitle {
-  color: var(--text-muted) !important;
-}
-
-.surface-frame {
-  background: var(--container-outer);
-  border: 1px solid var(--volkya-border);
-  border-radius: var(--volkya-radius-frame) var(--volkya-radius-frame) var(--volkya-radius)
-    var(--volkya-radius);
-  overflow: hidden;
-  margin-bottom: 2rem;
-}
-
-.surface-frame__head {
-  background: var(--chrome-bg);
-  border-bottom: 1px solid var(--volkya-border);
-  padding: 0.85rem 1.1rem 1rem;
-}
-
-.surface-frame__head h1 {
-  color: var(--text-headline);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  font-size: 1.2rem;
-  line-height: 1.3;
-}
-
-.markdown-body.content-well {
-  padding: 1.25rem 1.35rem 1.75rem;
-  max-width: none;
 }
 
 .markdown-body {

@@ -12,7 +12,7 @@ import { SiteCopyService } from './core/site-copy.service';
   template: `
     <div class="layout-app">
       <mat-toolbar class="app-toolbar">
-        <span class="brand">{{ site.content().brand.toolbarTitle }}</span>
+        <a class="brand" routerLink="/">{{ site.content().brand.toolbarTitle }}</a>
         <span class="spacer"></span>
         @for (item of site.content().nav; track item.path) {
           <a
@@ -64,6 +64,11 @@ import { SiteCopyService } from './core/site-copy.service';
         font-weight: 600;
         letter-spacing: 0.04em;
         font-size: 0.9rem;
+        color: var(--text-ui);
+        text-decoration: none;
+      }
+      .brand:hover {
+        color: var(--volkya-brand);
       }
       .shell {
         flex: 1 1 auto;

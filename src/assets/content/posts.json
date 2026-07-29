@@ -1,10 +1,10 @@
 [
   {
-    "title": "Bienvenida al blog",
+    "title": "Welcome to the blog",
     "date": "2026-04-22T00:00:00.000Z",
-    "description": "Contenido en Markdown en el repo, sin Medium.",
+    "description": "Markdown content in the repo — no Medium.",
     "layout": "note",
     "slug": "bienvenida",
-    "body": "\nEste sitio arma los artículos desde archivos **Markdown** en la carpeta `content/posts/`.\n\n- Editás el `.md`, corrés `yarn start` o `yarn build` y listo.\n- Podés usar `draft: true` en el front matter para ocultar el post en producción (sigue visible en desarrollo).\n\n```bash\ncontent/posts/mi-nota.md\n```\n"
+    "body": "\nThis site builds articles from **Markdown** files in `content/posts/`.\n\n- Edit a `.md`, run `yarn start` or `yarn build`, and you're done.\n- Use `draft: true` in the front matter to hide a post in production (it stays visible in development).\n\n```bash\ncontent/posts/my-note.md\n```\n"
   }
 ]

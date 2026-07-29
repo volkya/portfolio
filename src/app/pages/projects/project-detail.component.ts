@@ -3,8 +3,6 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
 import { MarkdownComponent } from 'ngx-markdown';
 import { ContentService } from '../../core/content.service';
 import { SiteCopyService } from '../../core/site-copy.service';
@@ -13,49 +11,36 @@ import type { ProjectEntry } from '../../core/content.models';
 @Component({
   selector: 'app-project-detail',
   standalone: true,
-  imports: [AsyncPipe, RouterLink, MatButtonModule, MatChipsModule, MatIconModule, MarkdownComponent],
+  imports: [AsyncPipe, RouterLink, MatButtonModule, MarkdownComponent],
   template: `
     @if (state$ | async; as s) {
       @if (s.project) {
-        <section class="surface-frame">
-          <header class="surface-frame__head">
-            <a mat-stroked-button class="btn-pill-outline" routerLink="/projects">
-              <mat-icon>arrow_back</mat-icon>
-              {{ site.content().projectDetail.back }}
-            </a>
-            <h1>{{ s.project.title }}</h1>
-            @if (s.project.tags?.length) {
-              <mat-chip-set>
-                @for (t of s.project.tags; track t) {
-                  <mat-chip disabled>{{ t }}</mat-chip>
-                }
-              </mat-chip-set>
+        <article class="detail">
+          <a class="back-link" routerLink="/projects">← {{ site.content().projectDetail.back }}</a>
+          <h1 class="detail-title">{{ s.project.title }}</h1>
+          @if (s.project.tags?.length) {
+            <ul class="tag-list" aria-label="Tags">
+              @for (t of s.project.tags; track t) {
+                <li>{{ t }}</li>
+              }
+            </ul>
+          }
+          <div class="detail-links">
+            @if (s.project.repo) {
+              <a [href]="s.project.repo" target="_blank" rel="noopener noreferrer">{{
+                site.content().projectDetail.code
+              }}</a>
             }
-            <div class="links">
-              @if (s.project.repo) {
-                <a
-                  mat-stroked-button
-                  class="btn-pill-outline"
-                  [href]="s.project.repo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >{{ site.content().projectDetail.code }}</a>
-              }
-              @if (s.project.demo) {
-                <a
-                  mat-stroked-button
-                  class="btn-pill-outline"
-                  [href]="s.project.demo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >{{ site.content().projectDetail.demo }}</a>
-              }
-            </div>
-          </header>
-          <article class="markdown-body content-well">
+            @if (s.project.demo) {
+              <a [href]="s.project.demo" target="_blank" rel="noopener noreferrer">{{
+                site.content().projectDetail.demo
+              }}</a>
+            }
+          </div>
+          <div class="markdown-body">
             <markdown [data]="s.project.body" />
-          </article>
-        </section>
+          </div>
+        </article>
       } @else {
         <p class="empty-msg">{{ site.content().projectDetail.notFound }}</p>
         <a mat-stroked-button class="btn-pill-outline" routerLink="/projects">{{
@@ -66,14 +51,57 @@ import type { ProjectEntry } from '../../core/content.models';
   `,
   styles: [
     `
-      .surface-frame__head h1 {
-        margin: 0.35rem 0 0.25rem;
+      .detail {
+        max-width: 40rem;
       }
-      .links {
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1.25rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .back-link:hover {
+        color: var(--volkya-brand);
+      }
+      .detail-title {
+        margin: 0 0 0.75rem;
+        color: var(--text-headline);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        font-size: clamp(1.25rem, 3vw, 1.55rem);
+        line-height: 1.3;
+      }
+      .tag-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 0.75rem;
+        gap: 0.35rem 0.75rem;
+        list-style: none;
+        margin: 0 0 1rem;
+        padding: 0;
+        color: var(--text-ui);
+        font-size: 0.78rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .detail-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid var(--volkya-border);
+        font-size: 0.9rem;
+      }
+      .detail-links a {
+        color: var(--volkya-brand);
+        text-decoration: none;
+      }
+      .detail-links a:hover {
+        text-decoration: underline;
+        color: var(--text-strong);
       }
       .empty-msg {
         color: var(--text-muted);
