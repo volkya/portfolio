@@ -21,7 +21,7 @@ import type { ProjectEntry } from '../../core/content.models';
           @if (s.project.tags?.length) {
             <ul class="tag-list" aria-label="Tags">
               @for (t of s.project.tags; track t) {
-                <li>{{ t }}</li>
+                <li class="meta-pill">{{ t }}</li>
               }
             </ul>
           }
@@ -67,16 +67,7 @@ import type { ProjectEntry } from '../../core/content.models';
         color: var(--text-headline);
       }
       .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.35rem 0.75rem;
-        list-style: none;
-        margin: 0 0 1rem;
-        padding: 0;
-        color: var(--text-ui);
-        font-size: 0.78rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
+        margin-bottom: 1rem;
       }
       .detail-links {
         display: flex;

@@ -38,7 +38,7 @@ import { SiteCopyService } from '../../core/site-copy.service';
               @if (post.tags?.length) {
                 <ul class="tag-list" aria-label="Tags">
                   @for (t of post.tags; track t) {
-                    <li>{{ t }}</li>
+                    <li class="meta-pill">{{ t }}</li>
                   }
                 </ul>
               }
@@ -94,18 +94,6 @@ import { SiteCopyService } from '../../core/site-copy.service';
         color: var(--text-muted);
         font-size: 0.95rem;
         line-height: 1.55;
-      }
-      .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.35rem 0.75rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        color: var(--text-ui);
-        font-size: 0.78rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
       }
     `,
   ],

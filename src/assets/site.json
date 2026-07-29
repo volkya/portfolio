@@ -20,14 +20,14 @@
     "stackAriaLabel": "Core stack",
     "stackLabel": "Stack",
     "stackItems": "Java · Kotlin · Go · AWS · Kubernetes · Docker · Microservices · Observability",
-    "ctaProjects": "Projects",
+    "ctaProjects": "PROJECTS",
     "ctaCv": "Download CV",
     "journalHeading": "Recent notes",
     "journalAll": "All posts",
     "journalEmpty": "No posts published yet."
   },
   "projectsPage": {
-    "heading": "Projects",
+    "heading": "PROJECTS",
     "lede": "Selected work and side projects.",
     "empty": "No projects published yet.",
     "detail": "Details",
@@ -35,7 +35,7 @@
     "demo": "Demo"
   },
   "blogPage": {
-    "heading": "Blog",
+    "heading": "BLOG",
     "lede": "Notes on backend systems, architecture, and engineering.",
     "empty": "No posts published yet.",
     "draftChip": "Draft"

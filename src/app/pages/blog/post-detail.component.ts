@@ -29,7 +29,7 @@ import type { PostEntry } from '../../core/content.models';
           @if (s.post.tags?.length) {
             <ul class="tag-list" aria-label="Tags">
               @for (t of s.post.tags || []; track t) {
-                <li>{{ t }}</li>
+                <li class="meta-pill">{{ t }}</li>
               }
             </ul>
           }
@@ -72,17 +72,9 @@ import type { PostEntry } from '../../core/content.models';
         color: var(--text-ui);
       }
       .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.35rem 0.75rem;
-        list-style: none;
         margin: 0 0 1.5rem;
         padding: 0 0 1.25rem;
         border-bottom: 1px solid var(--volkya-border);
-        color: var(--text-ui);
-        font-size: 0.78rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
       }
       .empty-msg {
         color: var(--text-muted);
