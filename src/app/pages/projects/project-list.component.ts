@@ -83,7 +83,7 @@ import { SiteCopyService } from '../../core/site-copy.service';
         text-decoration: none;
       }
       .entry-title a:hover {
-        color: var(--volkya-brand);
+        color: var(--text-headline);
       }
       .entry-summary {
         margin: 0 0 0.65rem;
@@ -110,7 +110,7 @@ import { SiteCopyService } from '../../core/site-copy.service';
         font-size: 0.85rem;
       }
       .entry-links a {
-        color: var(--volkya-brand);
+        color: var(--text-headline);
         text-decoration: none;
       }
       .entry-links a:hover {

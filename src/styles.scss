@@ -43,6 +43,10 @@ $volkya-primary: mat.m2-define-palette($volkya-primary-map, 500, 300, 700);
 $volkya-accent: mat.m2-define-palette(mat.$m2-brown-palette, 300, 200, 500);
 $volkya-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
+$volkya-typography: mat.m2-define-typography-config(
+  $font-family: '"Plus Jakarta Sans", "Helvetica Neue", sans-serif',
+);
+
 $volkya-dark-theme: mat.m2-define-dark-theme(
   (
     color: (
@@ -50,7 +54,7 @@ $volkya-dark-theme: mat.m2-define-dark-theme(
       accent: $volkya-accent,
       warn: $volkya-warn,
     ),
-    typography: mat.m2-define-typography-config(),
+    typography: $volkya-typography,
     density: 0,
   )
 );
@@ -64,15 +68,17 @@ $volkya-dark-theme: mat.m2-define-dark-theme(
   --container-outer: #1b1916;
   --container-inner: #262320;
   --volkya-brand: #{$volkya-brand};
-  /* Rojo ladrillo apagado, menos “RGB puro” que #8b0000 */
-  --text-headline: #72231a;
-  --text-body: #9e958b;
-  --text-muted: #857c73;
-  --text-ui: #d9d1c7;
-  --text-strong: #ebe3d9;
-  --volkya-border: rgba(200, 185, 168, 0.1);
+  /* Texto estilo foro: grises apagados + maroon muted (no blancos) */
+  --text-headline: #6b2424;
+  --text-body: #7a736c;
+  --text-muted: #5a5550;
+  --text-ui: #8a8279;
+  --text-strong: #958d84;
+  --volkya-border: rgba(160, 148, 136, 0.14);
   --volkya-radius: 2px;
   --volkya-radius-frame: 6px;
+  --font-display: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
 }
 
 @mixin page-texture {
@@ -95,7 +101,7 @@ body {
   background-color: var(--page-bg);
   @include page-texture;
   color: var(--text-ui);
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: var(--font-body);
 }
 
 .mat-app-background {
@@ -111,25 +117,38 @@ body {
   background: var(--chrome-bg);
   color: var(--text-ui);
   border-bottom: 1px solid var(--volkya-border);
+  font-family: var(--font-body);
 }
 
 .app-toolbar a.mat-mdc-button,
 .app-toolbar a.mat-mdc-icon-button {
   --mdc-text-button-label-text-color: var(--text-muted);
   --mdc-text-button-hover-label-text-color: var(--text-ui);
-  letter-spacing: 0.06em;
+  --mdc-text-button-label-text-font: var(--font-body);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.72rem;
   font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--text-muted) !important;
+  border-radius: 9999px !important;
+}
+
+.app-toolbar a.mat-mdc-button:hover {
+  color: var(--text-ui) !important;
+  background: transparent;
 }
 
 .app-toolbar a.mat-mdc-icon-button {
-  --mdc-icon-button-icon-color: var(--volkya-brand);
+  --mdc-icon-button-icon-color: var(--text-headline);
 }
 
+/* Active = same language as STACK meta-pill (no rojo-sobre-rojo) */
 .app-toolbar a.mat-mdc-button.active {
-  color: var(--volkya-brand);
-  background: rgba(120, 72, 58, 0.35);
+  color: var(--text-ui) !important;
+  background: var(--chrome-bg);
+  border: 1px solid var(--volkya-border);
+  --mdc-text-button-label-text-color: var(--text-ui);
 }
 
 /* Botón píldora contorneado (referencia foro / “Ocultar perfil”) */
@@ -137,13 +156,13 @@ body {
 a.btn-pill-outline.mat-mdc-outlined-button {
   --mdc-outlined-button-container-shape: 9999px;
   --mdc-outlined-button-outline-width: 1px;
-  --mdc-outlined-button-outline-color: rgba(200, 188, 176, 0.45);
+  --mdc-outlined-button-outline-color: rgba(120, 112, 104, 0.55);
   --mdc-outlined-button-label-text-color: var(--text-ui);
   --mdc-outlined-button-label-text-size: 0.8125rem;
   --mdc-outlined-button-label-text-tracking: 0.01em;
   --mdc-outlined-button-hover-label-text-color: var(--text-strong);
-  --mdc-outlined-button-hover-outline-color: rgba(225, 215, 200, 0.5);
-  --mdc-outlined-button-focus-outline-color: rgba(225, 215, 200, 0.5);
+  --mdc-outlined-button-hover-outline-color: rgba(140, 130, 120, 0.65);
+  --mdc-outlined-button-focus-outline-color: rgba(140, 130, 120, 0.65);
   --mdc-outlined-button-container-color: transparent;
   --mat-outlined-button-horizontal-padding: 14px;
   --mat-outlined-button-vertical-padding: 0;
@@ -170,13 +189,68 @@ a.btn-pill-outline.mat-mdc-outlined-button .mdc-button__outline {
   vertical-align: middle;
 }
 
-.page-heading {
-  margin: 0 0 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 1.05rem;
+.page-heading,
+.hero-title,
+.detail-title {
+  margin: 0;
   color: var(--text-headline);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  line-height: 1.15;
+}
+
+.page-heading {
+  font-size: 1.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  margin-bottom: 1.5rem;
+}
+
+.detail-title {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+/* 1+2 fused: brand tick → muted full rule, one stroke */
+.page-heading::after,
+.hero-title::after,
+.detail-title::after {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-top: 0.95rem;
+  background: linear-gradient(
+    to right,
+    var(--text-headline) 0,
+    var(--text-headline) 2.25rem,
+    rgba(120, 112, 104, 0.35) 2.25rem,
+    rgba(120, 112, 104, 0.35) 100%
+  );
+}
+
+/* Meta only — never on main titles */
+.meta-pill {
+  display: inline-block;
+  padding: 0.22rem 0.7rem;
+  border-radius: 9999px;
+  border: 1px solid var(--volkya-border);
+  background: var(--chrome-bg);
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.meta-pill--accent {
+  color: var(--text-headline);
+  border-color: rgba(107, 36, 36, 0.4);
 }
 
 .lede {
@@ -205,8 +279,9 @@ a.btn-pill-outline.mat-mdc-outlined-button .mdc-button__outline {
 .markdown-body h3 {
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   font-size: 0.95rem;
   color: var(--text-headline);
@@ -222,7 +297,7 @@ a.btn-pill-outline.mat-mdc-outlined-button .mdc-button__outline {
 }
 
 .markdown-body a {
-  color: var(--volkya-brand);
+  color: var(--text-headline);
 }
 
 .markdown-body pre {

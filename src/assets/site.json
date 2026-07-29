@@ -1,26 +1,30 @@
 {
-  "brand": { "toolbarTitle": "Dyma Correa" },
+  "brand": { "toolbarTitle": "DYMA CORREA" },
   "social": {
     "githubUrl": "https://github.com/Volkya",
-    "githubAriaLabel": "GitHub"
+    "githubAriaLabel": "GitHub",
+    "linkedinUrl": "https://www.linkedin.com/in/dymacorrea/",
+    "linkedinAriaLabel": "LinkedIn"
   },
   "contact": { "email": "correa.dyma@gmail.com" },
-  "footer": { "cvLabel": "CV", "githubLabel": "GitHub" },
+  "footer": { "cvLabel": "CV", "githubLabel": "GitHub", "linkedinLabel": "LinkedIn" },
   "nav": [
     { "path": "/", "label": "Home", "exact": true },
     { "path": "/projects", "label": "Projects" },
-    { "path": "/blog", "label": "Blog" },
-    { "path": "/cv", "label": "CV" }
+    { "path": "/blog", "label": "Blog" }
   ],
   "home": {
-    "heroTitle": "Hi! I'm Dyma Correa",
-    "heroSubtitle": "Senior Backend Engineer · Argentina (GMT-3)",
+    "heroTitle": "HI! I'M DYMA CORREA",
+    "heroSubtitle": "Senior Software Engineer · Argentina (GMT-3)",
     "heroBody": "I design and build distributed systems focused on concurrency, performance, and resilience.\n\nScalable architectures with Java, Kotlin, and Go: microservices, events, and observability in high-throughput environments.\n\nToday I'm interested in pushing backends toward real-time processing and AI integration.",
     "stackAriaLabel": "Core stack",
     "stackLabel": "Stack",
     "stackItems": "Java · Kotlin · Go · AWS · Kubernetes · Docker · Microservices · Observability",
     "ctaProjects": "Projects",
-    "ctaBlog": "Blog"
+    "ctaCv": "Download CV",
+    "journalHeading": "Recent notes",
+    "journalAll": "All posts",
+    "journalEmpty": "No posts published yet."
   },
   "projectsPage": {
     "heading": "Projects",

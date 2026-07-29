@@ -29,7 +29,7 @@ import { SiteCopyService } from '../../core/site-copy.service';
                   <time [attr.datetime]="post.date">{{ post.date | date: 'mediumDate' }}</time>
                 }
                 @if (post.draft) {
-                  <span class="draft">{{ site.content().blogPage.draftChip }}</span>
+                  <span class="meta-pill meta-pill--accent">{{ site.content().blogPage.draftChip }}</span>
                 }
               </div>
               @if (post.description) {
@@ -78,7 +78,7 @@ import { SiteCopyService } from '../../core/site-copy.service';
         text-decoration: none;
       }
       .entry-title a:hover {
-        color: var(--volkya-brand);
+        color: var(--text-headline);
       }
       .entry-meta {
         display: flex;
@@ -88,13 +88,6 @@ import { SiteCopyService } from '../../core/site-copy.service';
         margin-bottom: 0.45rem;
         font-size: 0.85rem;
         color: var(--text-ui);
-      }
-      .draft {
-        color: var(--volkya-brand);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 0.7rem;
-        font-weight: 600;
       }
       .entry-summary {
         margin: 0 0 0.55rem;

@@ -64,15 +64,7 @@ import type { ProjectEntry } from '../../core/content.models';
         text-transform: uppercase;
       }
       .back-link:hover {
-        color: var(--volkya-brand);
-      }
-      .detail-title {
-        margin: 0 0 0.75rem;
         color: var(--text-headline);
-        font-weight: 700;
-        letter-spacing: 0.02em;
-        font-size: clamp(1.25rem, 3vw, 1.55rem);
-        line-height: 1.3;
       }
       .tag-list {
         display: flex;
@@ -96,7 +88,7 @@ import type { ProjectEntry } from '../../core/content.models';
         font-size: 0.9rem;
       }
       .detail-links a {
-        color: var(--volkya-brand);
+        color: var(--text-headline);
         text-decoration: none;
       }
       .detail-links a:hover {

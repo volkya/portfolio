@@ -56,7 +56,7 @@ import { SiteCopyService } from '../../core/site-copy.service';
         align-items: center;
       }
       .lede a {
-        color: var(--volkya-brand);
+        color: var(--text-headline);
       }
     `,
   ],

@@ -6,9 +6,9 @@ export interface NavItemCopy {
 
 export interface SiteCopy {
   brand: { toolbarTitle: string };
-  social: { githubUrl: string; githubAriaLabel: string };
+  social: { githubUrl: string; githubAriaLabel: string; linkedinUrl: string; linkedinAriaLabel: string };
   contact: { email: string };
-  footer: { cvLabel: string; githubLabel: string };
+  footer: { cvLabel: string; githubLabel: string; linkedinLabel: string };
   nav: NavItemCopy[];
   home: {
     heroTitle: string;
@@ -18,7 +18,10 @@ export interface SiteCopy {
     stackLabel: string;
     stackItems: string;
     ctaProjects: string;
-    ctaBlog: string;
+    ctaCv: string;
+    journalHeading: string;
+    journalAll: string;
+    journalEmpty: string;
   };
   projectsPage: {
     heading: string;

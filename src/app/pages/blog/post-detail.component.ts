@@ -23,7 +23,7 @@ import type { PostEntry } from '../../core/content.models';
               <time [attr.datetime]="s.post.date">{{ s.post.date | date: 'longDate' }}</time>
             }
             @if (devMode && s.post.draft) {
-              <span class="draft">{{ site.content().postDetail.draftChip }}</span>
+              <span class="meta-pill meta-pill--accent">{{ site.content().postDetail.draftChip }}</span>
             }
           </div>
           @if (s.post.tags?.length) {
@@ -60,15 +60,7 @@ import type { PostEntry } from '../../core/content.models';
         text-transform: uppercase;
       }
       .back-link:hover {
-        color: var(--volkya-brand);
-      }
-      .detail-title {
-        margin: 0 0 0.5rem;
         color: var(--text-headline);
-        font-weight: 700;
-        letter-spacing: 0.02em;
-        font-size: clamp(1.25rem, 3vw, 1.55rem);
-        line-height: 1.3;
       }
       .meta {
         display: flex;
@@ -78,13 +70,6 @@ import type { PostEntry } from '../../core/content.models';
         margin-bottom: 0.85rem;
         font-size: 0.9rem;
         color: var(--text-ui);
-      }
-      .draft {
-        color: var(--volkya-brand);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 0.7rem;
-        font-weight: 600;
       }
       .tag-list {
         display: flex;
