@@ -12,6 +12,14 @@
 | Build command | `yarn install --frozen-lockfile && yarn build` |
 | Build output directory | `dist/portfolio` |
 | Root directory | `/` (raíz del repo) |
+| Node version (Environment variables) | `NODE_VERSION` = `22` |
+
+**Importante:** el repo usa **Yarn Classic (1.22)**, no Yarn Berry (4.x). Cloudflare a veces activa Yarn 4 y falla con `YN0028` (quiere reescribir el lockfile). El campo `packageManager` en `package.json` fija Yarn 1. Si igual falla, en Pages → Settings → Builds:
+
+- Environment variable: `SKIP_DEPENDENCY_INSTALL` = `true`
+- Build command: `npx -y yarn@1.22.22 install --frozen-lockfile && npx -y yarn@1.22.22 build`
+
+O, equivalente: `npm install && npm run build` (npm también sirve; Yarn está porque el proyecto ya tenía `yarn.lock`).
 
 4. Variables de entorno: no hace falta para este proyecto.
 5. **Rutas SPA**: el archivo `src/_redirects` se copia al build y hace que `/blog`, `/projects/...`, etc. carguen `index.html` (status 200). No requiere configuración extra en Cloudflare.
