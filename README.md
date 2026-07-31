@@ -88,6 +88,13 @@ portfolio/
 - ✅ Routing configurado
 - ✅ Tema personalizado de Material
 
+## CI/CD
+
+- **CI:** GitHub Actions (`.github/workflows/ci.yml`) — valida `yarn build` en push/PR.
+- **CD:** Cloudflare Pages — publica en cada push a `main`.
+
+Guía completa (Yarn Classic, env vars de Pages, troubleshooting): [`docs/deploy.md`](docs/deploy.md).
+
 ## 📧 Contacto
 
 **Dyma Correa**  
