@@ -3,7 +3,7 @@
 
 @include mat.core();
 
-$volkya-brand: #a53d2e;
+$volkya-brand: #96342c;
 
 $volkya-primary-map: (
   50: #f8efed,
@@ -12,7 +12,7 @@ $volkya-primary-map: (
   300: #cfa696,
   400: #bc765f,
   500: $volkya-brand,
-  600: #96382a,
+  600: #852e27,
   700: #853024,
   800: #75281e,
   900: #5c1a14,
@@ -59,26 +59,70 @@ $volkya-dark-theme: mat.m2-define-dark-theme(
   )
 );
 
+$volkya-light-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $volkya-primary,
+      accent: $volkya-accent,
+      warn: $volkya-warn,
+    ),
+    typography: $volkya-typography,
+    density: 0,
+  )
+);
+
 @include mat.all-component-themes($volkya-dark-theme);
 
-:root {
+html[data-theme='light'] {
+  @include mat.all-component-colors($volkya-light-theme);
+}
+
+:root,
+html[data-theme='dark'] {
   /* Capas: negros cálidos / taupe (más “marrón gris” que #0c0c0c frío) */
   --page-bg: #100f0d;
   --chrome-bg: #0c0b09;
   --container-outer: #1b1916;
   --container-inner: #262320;
   --volkya-brand: #{$volkya-brand};
-  /* Texto estilo foro: grises apagados + maroon muted (no blancos) */
-  --text-headline: #6b2424;
+  /* Rojo marca unificado */
+  --text-headline: #96342c;
   --text-body: #7a736c;
   --text-muted: #5a5550;
   --text-ui: #8a8279;
   --text-strong: #958d84;
   --volkya-border: rgba(160, 148, 136, 0.14);
+  --rule-muted: rgba(120, 112, 104, 0.35);
+  --pill-border: rgba(120, 112, 104, 0.55);
+  --pill-border-hover: rgba(140, 130, 120, 0.7);
+  --code-inline-bg: rgba(0, 0, 0, 0.35);
+  --texture-line: rgba(210, 190, 165, 0.028);
   --volkya-radius: 2px;
   --volkya-radius-frame: 6px;
   --font-display: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
   --font-body: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+  --on-brand: #ebe3d9;
+}
+
+html[data-theme='light'] {
+  /* Piedra cálida (no cream genérico); marca #96342c intacta */
+  --page-bg: #e6e2db;
+  --chrome-bg: #f2efe9;
+  --container-outer: #ddd8d0;
+  --container-inner: #d4cec5;
+  --volkya-brand: #{$volkya-brand};
+  --text-headline: #96342c;
+  --text-body: #4a453f;
+  --text-muted: #6b655d;
+  --text-ui: #3f3a35;
+  --text-strong: #2c2824;
+  --volkya-border: rgba(60, 52, 44, 0.14);
+  --rule-muted: rgba(90, 82, 74, 0.35);
+  --pill-border: rgba(90, 82, 74, 0.4);
+  --pill-border-hover: rgba(70, 62, 54, 0.55);
+  --code-inline-bg: rgba(40, 34, 28, 0.08);
+  --texture-line: rgba(70, 55, 40, 0.04);
+  --on-brand: #ebe3d9;
 }
 
 @mixin page-texture {
@@ -86,8 +130,8 @@ $volkya-dark-theme: mat.m2-define-dark-theme(
     90deg,
     transparent,
     transparent 1px,
-    rgba(210, 190, 165, 0.028) 1px,
-    rgba(210, 190, 165, 0.028) 2px
+    var(--texture-line) 1px,
+    var(--texture-line) 2px
   );
 }
 
@@ -102,11 +146,18 @@ body {
   @include page-texture;
   color: var(--text-ui);
   font-family: var(--font-body);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .mat-app-background {
   background-color: var(--page-bg);
   @include page-texture;
+  transition: background-color 0.2s ease;
+}
+
+.app-toolbar.mat-toolbar,
+.site-footer {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 * {
@@ -143,6 +194,15 @@ body {
   --mdc-icon-button-icon-color: var(--text-headline);
 }
 
+.app-toolbar .theme-toggle.mat-mdc-icon-button {
+  --mdc-icon-button-icon-color: var(--text-muted);
+  margin-left: 0.15rem;
+}
+
+.app-toolbar .theme-toggle.mat-mdc-icon-button:hover {
+  --mdc-icon-button-icon-color: var(--text-headline);
+}
+
 /* Active = same language as STACK meta-pill (no rojo-sobre-rojo) */
 .app-toolbar a.mat-mdc-button.active {
   color: var(--text-ui) !important;
@@ -159,7 +219,7 @@ body {
   min-height: 2.1rem;
   padding: 0.4rem 1rem;
   border-radius: 9999px;
-  border: 1px solid rgba(120, 112, 104, 0.55);
+  border: 1px solid var(--pill-border);
   background: transparent;
   color: var(--text-ui);
   font-family: var(--font-body);
@@ -172,19 +232,19 @@ body {
 
 .btn-pill:hover {
   color: var(--text-strong);
-  border-color: rgba(140, 130, 120, 0.7);
+  border-color: var(--pill-border-hover);
 }
 
 .btn-pill--solid {
-  border-color: rgba(107, 36, 36, 0.55);
-  background: rgba(107, 36, 36, 0.35);
-  color: var(--text-strong);
+  border-color: var(--volkya-brand);
+  background: var(--volkya-brand);
+  color: var(--on-brand);
 }
 
 .btn-pill--solid:hover {
-  background: rgba(107, 36, 36, 0.5);
-  border-color: rgba(107, 36, 36, 0.7);
-  color: var(--text-strong);
+  background: #852e27;
+  border-color: #852e27;
+  color: var(--on-brand);
 }
 
 /* Botón píldora Material (páginas que aún lo usan) */
@@ -192,13 +252,13 @@ body {
 a.btn-pill-outline.mat-mdc-outlined-button {
   --mdc-outlined-button-container-shape: 9999px;
   --mdc-outlined-button-outline-width: 1px;
-  --mdc-outlined-button-outline-color: rgba(120, 112, 104, 0.55);
+  --mdc-outlined-button-outline-color: var(--pill-border);
   --mdc-outlined-button-label-text-color: var(--text-ui);
   --mdc-outlined-button-label-text-size: 0.8125rem;
   --mdc-outlined-button-label-text-tracking: 0.01em;
   --mdc-outlined-button-hover-label-text-color: var(--text-strong);
-  --mdc-outlined-button-hover-outline-color: rgba(140, 130, 120, 0.65);
-  --mdc-outlined-button-focus-outline-color: rgba(140, 130, 120, 0.65);
+  --mdc-outlined-button-hover-outline-color: var(--pill-border-hover);
+  --mdc-outlined-button-focus-outline-color: var(--pill-border-hover);
   --mdc-outlined-button-container-color: transparent;
   --mat-outlined-button-horizontal-padding: 14px;
   --mat-outlined-button-vertical-padding: 0;
@@ -264,8 +324,8 @@ a.btn-pill-outline.mat-mdc-outlined-button .mdc-button__outline {
     to right,
     var(--text-headline) 0,
     var(--text-headline) 2.25rem,
-    rgba(120, 112, 104, 0.35) 2.25rem,
-    rgba(120, 112, 104, 0.35) 100%
+    var(--rule-muted) 2.25rem,
+    var(--rule-muted) 100%
   );
 }
 
@@ -286,7 +346,7 @@ a.btn-pill-outline.mat-mdc-outlined-button .mdc-button__outline {
 
 .meta-pill--accent {
   color: var(--text-headline);
-  border-color: rgba(107, 36, 36, 0.4);
+  border-color: rgba(150, 52, 44, 0.4);
 }
 
 a.meta-pill {
@@ -296,7 +356,7 @@ a.meta-pill {
 
 a.meta-pill:hover {
   color: var(--text-headline);
-  border-color: rgba(107, 36, 36, 0.45);
+  border-color: rgba(150, 52, 44, 0.45);
 }
 
 .tag-list {
@@ -371,7 +431,7 @@ a.meta-pill:hover {
 .markdown-body :not(pre) > code {
   padding: 0.1em 0.35em;
   border-radius: var(--volkya-radius);
-  background: rgba(0, 0, 0, 0.35);
+  background: var(--code-inline-bg);
   border: 1px solid var(--volkya-border);
   color: var(--text-ui);
   font-size: 0.9em;

@@ -2,7 +2,7 @@ import type { SiteCopy } from './site-copy.model';
 
 /** Fallback if `assets/site.json` fails to load. Keep aligned with that file. */
 export const SITE_COPY_FALLBACK: SiteCopy = {
-  brand: { toolbarTitle: 'Dyma Correa' },
+  brand: { toolbarTitle: 'DYMA CORREA' },
   social: {
     githubUrl: 'https://github.com/Volkya',
     githubAriaLabel: 'GitHub',
@@ -17,15 +17,16 @@ export const SITE_COPY_FALLBACK: SiteCopy = {
     { path: '/blog', label: 'Blog' },
   ],
   home: {
-    heroTitle: "Hi! I'm Dyma Correa",
-    heroSubtitle: 'Senior Software Engineer · Argentina (GMT-3)',
+    heroTitle: 'Dylan Matias Correa',
+    heroSubtitle: 'Senior Software Engineer · Cloud & Solutions Architecture · Remote (GMT-3)',
     heroBody:
-      "I design and build distributed systems focused on concurrency, performance, and resilience.\n\nScalable architectures with Java, Kotlin, and Go: microservices, events, and observability in high-throughput environments.\n\nToday I'm interested in pushing backends toward real-time processing and AI integration.",
+      "I design end-to-end solutions for cloud-native systems: clear boundaries, trade-offs, and architectures that hold up under load.\n\nStrong on the backend (Java, Kotlin, Go) with frontend when the product needs it (Angular, React)—microservices, events, and observability on AWS and Kubernetes.\n\nI'm growing toward solutions architecture and AI-aware backends: real-time processing, resilient platforms, and practical AI integration.",
     stackAriaLabel: 'Core stack',
     stackLabel: 'Stack',
-    stackItems: 'Java · Kotlin · Go · Node.js · Python · PHP · Angular · React · AWS · Kubernetes · Docker · Terraform · ArgoCD · Prometheus · Microservices · Observability',
-    ctaProjects: 'Projects',
-    ctaCv: 'Download CV',
+    stackItems:
+      'Java · Kotlin · Go · Node.js · Python · Angular · React · AWS · Kubernetes · Docker · Terraform · ArgoCD · Prometheus · Microservices · Observability',
+    ctaProjects: 'PROJECTS',
+    ctaCv: 'View CV',
     journalHeading: 'Recent notes',
     journalAll: 'All posts',
     journalEmpty: 'No posts published yet.',
@@ -48,10 +49,10 @@ export const SITE_COPY_FALLBACK: SiteCopy = {
     heading: 'CV',
     lede: 'PDF for applications; the up-to-date technical work lives on',
     ledeLinkLabel: 'GitHub',
-    hint: 'Download a short résumé, or browse the full history on GitHub.',
-    downloadPdf: 'Download PDF',
+    hint: 'Open the PDF online (anyone with the link can view), or browse the full history on GitHub.',
+    downloadPdf: 'View CV',
     viewGithub: 'View GitHub',
-    cvPdfHref: 'assets/cv.pdf',
+    cvPdfHref: 'https://drive.google.com/file/d/1_mhwXQLwrHxt-lxcXVvxc7zH42MWw3_R/view?usp=sharing',
   },
   projectDetail: {
     back: 'Projects',

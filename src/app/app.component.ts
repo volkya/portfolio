@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SiteCopyService } from './core/site-copy.service';
+import { ThemeService } from './core/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,15 @@ import { SiteCopyService } from './core/site-copy.service';
             {{ item.label }}
           </a>
         }
+        <button
+          mat-icon-button
+          type="button"
+          class="theme-toggle"
+          [attr.aria-label]="theme.mode() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+          (click)="theme.toggle()"
+        >
+          <mat-icon>{{ theme.mode() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
       </mat-toolbar>
 
       <main class="shell">
@@ -149,21 +159,27 @@ import { SiteCopyService } from './core/site-copy.service';
         color: var(--text-headline);
       }
       .footer-link:first-child {
-        border-color: rgba(107, 36, 36, 0.45);
-        background: rgba(107, 36, 36, 0.18);
+        border-color: var(--volkya-brand);
+        background: var(--volkya-brand);
+        color: var(--on-brand);
       }
       .footer-link:first-child mat-icon {
-        color: var(--text-headline);
+        color: var(--on-brand);
       }
       .footer-link:first-child:hover {
-        background: rgba(107, 36, 36, 0.28);
-        color: var(--text-strong);
+        background: #852e27;
+        border-color: #852e27;
+        color: var(--on-brand);
+      }
+      .footer-link:first-child:hover mat-icon {
+        color: var(--on-brand);
       }
     `,
   ],
 })
 export class AppComponent {
   readonly site = inject(SiteCopyService);
+  readonly theme = inject(ThemeService);
   readonly linkExact = { exact: true };
   readonly linkPrefix = { exact: false };
 
