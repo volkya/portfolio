@@ -41,46 +41,39 @@ import { ThemeService } from './core/theme.service';
       </main>
 
       <footer class="site-footer">
-        <nav class="footer-links" aria-label="Contact">
-          <a class="footer-link" [href]="mailtoHref">
-            <mat-icon>mail</mat-icon>
-            <span>{{ site.content().contact.email }}</span>
-          </a>
-          <a
-            class="footer-link"
-            [href]="site.content().cvPage.cvPdfHref"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <mat-icon>description</mat-icon>
-            <span>{{ site.content().footer.cvLabel }}</span>
-          </a>
-          <a
-            class="footer-link"
-            [href]="site.content().social.githubUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            [attr.aria-label]="site.content().social.githubAriaLabel"
-          >
-            <mat-icon>code</mat-icon>
-            <span>{{ site.content().footer.githubLabel }}</span>
-          </a>
-          <a
-            class="footer-link"
-            [href]="site.content().social.linkedinUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            [attr.aria-label]="site.content().social.linkedinAriaLabel"
-          >
-            <svg class="footer-svg" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                fill="currentColor"
-                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-              />
-            </svg>
-            <span>{{ site.content().footer.linkedinLabel }}</span>
-          </a>
-        </nav>
+        <div class="footer-inner">
+          <a class="footer-email" [href]="mailtoHref">{{ site.content().contact.email }}</a>
+          <nav class="footer-social" aria-label="Social">
+            <a
+              class="footer-icon"
+              [href]="site.content().social.githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="site.content().social.githubAriaLabel"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.02-2-3.34.73-4.03-1.61-4.03-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.91-.01 3.31 0 .32.22.69.83.57C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"
+                />
+              </svg>
+            </a>
+            <a
+              class="footer-icon"
+              [href]="site.content().social.linkedinUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="site.content().social.linkedinAriaLabel"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+          </nav>
+        </div>
       </footer>
     </div>
   `,
@@ -108,71 +101,59 @@ import { ThemeService } from './core/theme.service';
       .shell {
         flex: 1 1 auto;
         width: 100%;
-        max-width: 880px;
+        max-width: 720px;
         margin: 0 auto;
         padding: 1.5rem clamp(1rem, 4vw, 1.75rem) 2.5rem;
       }
       .site-footer {
         flex-shrink: 0;
         margin-top: auto;
-        padding: 0.85rem clamp(1rem, 4vw, 1.75rem);
+        padding: 1.1rem clamp(1rem, 4vw, 1.75rem) 1.35rem;
         border-top: 1px solid var(--volkya-border);
         background: var(--chrome-bg);
       }
-      .footer-links {
+      .footer-inner {
+        width: 100%;
+        max-width: 720px;
+        margin: 0 auto;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.55rem 0.75rem;
-      }
-      .footer-link {
-        display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
-        padding: 0.4rem 0.85rem;
-        border: 1px solid var(--volkya-border);
-        border-radius: 9999px;
+        justify-content: space-between;
+        gap: 0.75rem 1.25rem;
+      }
+      .footer-email {
         color: var(--text-ui);
         text-decoration: none;
-        font-size: 0.8rem;
+        font-size: 0.875rem;
         font-weight: 500;
-        line-height: 1.2;
-        background: transparent;
+        word-break: break-all;
       }
-      .footer-link mat-icon,
-      .footer-link .footer-svg {
-        font-size: 16px;
-        width: 16px;
-        height: 16px;
-        color: var(--text-muted);
-        flex-shrink: 0;
-      }
-      .footer-link .footer-svg {
-        display: block;
-      }
-      .footer-link:hover {
-        color: var(--text-strong);
-        border-color: rgba(140, 130, 120, 0.4);
-      }
-      .footer-link:hover mat-icon,
-      .footer-link:hover .footer-svg {
+      .footer-email:hover {
         color: var(--text-headline);
       }
-      .footer-link:first-child {
-        border-color: var(--volkya-brand);
-        background: var(--volkya-brand);
-        color: var(--on-brand);
+      .footer-social {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
       }
-      .footer-link:first-child mat-icon {
-        color: var(--on-brand);
+      .footer-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        border-radius: 0.35rem;
       }
-      .footer-link:first-child:hover {
-        background: #852e27;
-        border-color: #852e27;
-        color: var(--on-brand);
+      .footer-icon svg {
+        width: 1.2rem;
+        height: 1.2rem;
+        display: block;
       }
-      .footer-link:first-child:hover mat-icon {
-        color: var(--on-brand);
+      .footer-icon:hover {
+        color: var(--text-headline);
       }
     `,
   ],

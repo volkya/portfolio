@@ -10,7 +10,6 @@ export const SITE_COPY_FALLBACK: SiteCopy = {
     linkedinAriaLabel: 'LinkedIn',
   },
   contact: { email: 'correa.dyma@gmail.com' },
-  footer: { cvLabel: 'CV', githubLabel: 'GitHub', linkedinLabel: 'LinkedIn' },
   nav: [
     { path: '/', label: 'Home', exact: true },
     { path: '/projects', label: 'Projects' },
@@ -20,7 +19,7 @@ export const SITE_COPY_FALLBACK: SiteCopy = {
     heroTitle: 'Dylan Matias Correa',
     heroSubtitle: 'Senior Software Engineer · Cloud & Solutions Architecture · Remote (GMT-3)',
     heroBody:
-      "I design end-to-end solutions for cloud-native systems: clear boundaries, trade-offs, and architectures that hold up under load.\n\nStrong on the backend (Java, Kotlin, Go) with frontend when the product needs it (Angular, React)—microservices, events, and observability on AWS and Kubernetes.\n\nI'm growing toward solutions architecture and AI-aware backends: real-time processing, resilient platforms, and practical AI integration.",
+      "I'm a Senior Software Engineer focused on cloud-native systems and solutions architecture: clear boundaries, honest trade-offs, and platforms that hold up under load.\n\nBackend-first (Java, Kotlin, Go), with frontend when the product needs it (Angular, React)—microservices, events, and observability on AWS and Kubernetes.\n\nRemote from GMT-3. I'm growing toward solutions architecture and practical AI on the backend: real-time processing, resilient platforms, and integrations that belong in production.",
     stackAriaLabel: 'Core stack',
     stackLabel: 'Stack',
     stackItems:

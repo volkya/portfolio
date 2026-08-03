@@ -74,7 +74,6 @@ import { SiteCopyService } from '../../core/site-copy.service';
   styles: [
     `
       .hero {
-        max-width: 36rem;
         padding: 2.5rem 0 0;
       }
       .hero-kicker {
@@ -87,8 +86,9 @@ import { SiteCopyService } from '../../core/site-copy.service';
       }
       .hero-body {
         color: var(--text-body);
-        font-size: 1.05rem;
+        font-size: 1.0625rem;
         line-height: 1.7;
+        max-width: 40rem;
       }
       .hero-body p {
         margin: 0;
@@ -100,6 +100,7 @@ import { SiteCopyService } from '../../core/site-copy.service';
         margin: 2rem 0 0;
         padding: 1.15rem 0 0;
         border-top: 1px solid var(--volkya-border);
+        max-width: 40rem;
       }
       .stack-label {
         display: block;
@@ -127,9 +128,9 @@ import { SiteCopyService } from '../../core/site-copy.service';
         margin-top: 1.75rem;
       }
       .journal {
-        max-width: 36rem;
-        margin-top: 3rem;
+        margin-top: 3.25rem;
         padding-top: 0.25rem;
+        max-width: 40rem;
       }
       .journal-head {
         display: flex;

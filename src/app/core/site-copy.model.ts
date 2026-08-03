@@ -8,7 +8,6 @@ export interface SiteCopy {
   brand: { toolbarTitle: string };
   social: { githubUrl: string; githubAriaLabel: string; linkedinUrl: string; linkedinAriaLabel: string };
   contact: { email: string };
-  footer: { cvLabel: string; githubLabel: string; linkedinLabel: string };
   nav: NavItemCopy[];
   home: {
     heroTitle: string;
